@@ -1,8 +1,13 @@
 {
   "scripts": {
-    "start": "webpack-dev-server --env=dev --profile"
+    "start": "yarn build:dev && node ./dist/server.js",
+    "start:wds": "webpack-dev-server --env=dev --profile",
+    "build:dev": "rm -rf dist/ && NODE_ENV=development yarn build:client && NODE_ENV=development yarn build:server",
+    "build:server": "webpack --env=server --progress --profile",
+    "build:client": "webpack --env=client --progress --profile"
   },
   "dependencies": {
+    "express": "^4.17.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
@@ -15,17 +20,24 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
+    "@types/express": "^4.17.13",
     "@types/react": "^17.0.40",
     "@types/react-dom": "^17.0.13",
     "@types/react-helmet": "^6.1.5",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.24",
+    "@types/webpack-dev-middleware": "^5.3.0",
+    "@types/webpack-env": "^1.16.3",
+    "@types/webpack-hot-middleware": "^2.25.6",
     "babel-loader": "^8.2.3",
     "html-webpack-plugin": "^5.5.0",
     "ts-loader": "^9.2.8",
     "tslint": "^6.1.3",
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4"
+    "webpack-dev-middleware": "^5.3.1",
+    "webpack-dev-server": "^4.7.4",
+    "webpack-hot-middleware": "^2.25.1",
+    "webpack-node-externals": "^3.0.0"
   }
 }
